@@ -136,7 +136,7 @@ dmypy.json
 
 *.png
 
-*.pt
+
 # dont ignore the teaser
 !11794_ResNet18_ImageNet_input.png
 !11794_ResNet18_ImageNet_output.png

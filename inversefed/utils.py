@@ -43,14 +43,14 @@ def save_to_table(out_dir, name, dryrun, **kwargs):
     try:
         if os.path.isfile(fname):
             old_table = pd.read_csv(fname)
-        data = old_table.append(kwargs, ignore_index=True)
+        data = pd.concat([old_table, pd.DataFrame([kwargs])], ignore_index=True)
         # with open(fname, 'r') as f:
         #     reader = csv.reader(f, delimiter='\t')
         #     header = [line for line in reader][0]
     except Exception as e:
         print('Creating a new .csv table...')
         data = pd.DataFrame(columns = fieldnames)
-        data = data.append(kwargs, ignore_index=True)
+        data = pd.concat([data, pd.DataFrame([kwargs])], ignore_index=True)
     if not dryrun:
         # Add row for this experiment
         data.to_csv(fname, index=None)
